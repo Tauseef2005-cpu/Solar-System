@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Space Exploration · Interactive 3D Solar System</title>
+  <meta name="description" content="Explore the Solar System in stunning 3D — scroll through planets, moons, and cosmic environments.">
+  <meta property="og:site_name" content="Space Exploration">
+  <meta property="og:title" content="Space Exploration · Interactive 3D Solar System">
+  <meta property="og:description" content="Explore the Solar System in stunning 3D — scroll through planets, moons, and cosmic environments.">
+  <meta property="og:image" content="assets/img/space-logo.jpg">
+  <meta name="theme-color" content="#04060c">
+  <link rel="icon" href="assets/img/favicon-32x32ad7b.png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Marcellus&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="site journey" data-scene="journey">
+
+  <a class="skip-link" href="#content">Skip to content</a>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="sky-static" aria-hidden="true"></div>
+
+  <!-- Floating Planet Information Scientific HUD (Alternates Left / Right) -->
+  <div class="planet-hud align-left" id="planet-hud" aria-live="polite">
+    <div class="ph-card">
+      <div class="ph-header">
+        <span class="ph-tag">PLANETARY TELEMETRY</span>
+        <span class="ph-code" id="ph-code">SYS-01</span>
+      </div>
+      <h3 class="ph-name" id="ph-name">EARTH SURFACE</h3>
+      <p class="ph-sub" id="ph-sub">STREET &amp; CITY LEVEL · GÄVLE</p>
+      
+      <div class="ph-grid">
+        <div class="ph-metric">
+          <span class="ph-label">DIAMETER</span>
+          <span class="ph-val" id="ph-diameter">12,742 KM</span>
+        </div>
+        <div class="ph-metric">
+          <span class="ph-label">DISTANCE</span>
+          <span class="ph-val" id="ph-distance">149.6M KM</span>
+        </div>
+        <div class="ph-metric">
+          <span class="ph-label">SURFACE TEMP</span>
+          <span class="ph-val" id="ph-temp">15°C</span>
+        </div>
+        <div class="ph-metric">
+          <span class="ph-label">TOTAL MOONS</span>
+          <span class="ph-val" id="ph-moons">1 MOON</span>
+        </div>
+        <div class="ph-metric ph-full">
+          <span class="ph-label">NOTABLE MOONS</span>
+          <span class="ph-val" id="ph-moons-list">The Moon (Luna)</span>
+        </div>
+        <div class="ph-metric ph-full">
+          <span class="ph-label">ATMOSPHERE</span>
+          <span class="ph-val" id="ph-atmo">78% N₂, 21% O₂, 1% Ar</span>
+        </div>
+        <div class="ph-metric ph-full">
+          <span class="ph-label">ENVIRONMENT &amp; SURFACE</span>
+          <span class="ph-val" id="ph-env">Habitable climate, liquid water oceans, magnetosphere.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header" id="top">
+    <a class="brand" href="#ground" aria-label="Space Exploration, start">
+      <img src="assets/img/space-logo.jpg" alt="Space Exploration" width="40" height="40">
+      <span class="brand-name">Space Exploration</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu">
+        <span class="visually-hidden">Menu</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <ul id="site-menu" class="site-menu">
+        <li><a href="#ground" aria-current="page">Start</a></li>
+        <li><a href="#music">Earth Orbit</a></li>
+        <li><a href="#news">Moon</a></li>
+        <li><a href="#mercury-sec">Mercury</a></li>
+        <li><a href="#venus-sec">Venus</a></li>
+        <li><a href="#mars-sec">Mars</a></li>
+        <li><a href="#jupiter-sec">Jupiter</a></li>
+        <li><a href="#orbit">Saturn</a></li>
+        <li><a href="#videos-band">Uranus</a></li>
+        <li><a href="#deep-space">Neptune</a></li>
+        <li><a href="#sun-sec">Sun</a></li>
+        <li><a href="#solar-sec">Solar System</a></li>
+        <li><a href="#contact-hub">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Unobstructed 3D Planetary Journey Scroll Triggers -->
+  <main id="content">
+
+    <!-- 1 · Real Satellite Earth Surface -->
+    <section class="band band-clean" id="ground" aria-label="Start">
+      <div class="band-indicator">
+        <span class="label">REAL SATELLITE VIEW · GÄVLE 60.6737° N 17.1696° E</span>
+      </div>
+    </section>
+
+    <!-- 2 · Metropolitan Region & Curvature -->
+    <section class="band band-clean" id="earth-rise" aria-label="Metropolitan Region">
+      <div class="band-indicator">
+        <span class="label">METROPOLITAN REGION &amp; CURVATURE</span>
+      </div>
+    </section>
+
+    <!-- 3 · Earth Orbit -->
+    <section class="band band-clean" id="music" aria-label="Earth Orbit">
+      <div class="band-indicator">
+        <span class="label">EARTH GLOBE · LOW ORBIT 2,000 KM</span>
+      </div>
+    </section>
+
+    <!-- 4 · The Moon -->
+    <section class="band band-clean" id="news" aria-label="The Moon">
+      <div class="band-indicator">
+        <span class="label">THE MOON · DEEP SPACE GATEWAY</span>
+      </div>
+    </section>
+
+    <!-- 5 · Mercury -->
+    <section class="band band-clean" id="mercury-sec" aria-label="Mercury">
+      <div class="band-indicator">
+        <span class="label">MERCURY · BARREN CRATERED WORLD</span>
+      </div>
+    </section>
+
+    <!-- 6 · Venus -->
+    <section class="band band-clean" id="venus-sec" aria-label="Venus">
+      <div class="band-indicator">
+        <span class="label">VENUS · TOXIC ATMOSPHERIC GIANT</span>
+      </div>
+    </section>
+
+    <!-- 7 · Mars -->
+    <section class="band band-clean" id="mars-sec" aria-label="Mars">
+      <div class="band-indicator">
+        <span class="label">MARS · THE RED PLANET</span>
+      </div>
+    </section>
+
+    <!-- 8 · Jupiter -->
+    <section class="band band-clean" id="jupiter-sec" aria-label="Jupiter">
+      <div class="band-indicator">
+        <span class="label">JUPITER · GREAT RED SPOT &amp; GALILEAN MOONS</span>
+      </div>
+    </section>
+
+    <!-- 9 · Saturn -->
+    <section class="band band-clean" id="orbit" aria-label="Saturn">
+      <div class="band-indicator">
+        <span class="label">SATURN · 3D CASSINI RING SYSTEM</span>
+      </div>
+    </section>
+
+    <!-- 10 · Uranus -->
+    <section class="band band-clean" id="videos-band" aria-label="Uranus">
+      <div class="band-indicator">
+        <span class="label">URANUS · 98° AXIAL TILT</span>
+      </div>
+    </section>
+
+    <!-- 11 · Neptune -->
+    <section class="band band-clean" id="deep-space" aria-label="Neptune">
+      <div class="band-indicator">
+        <span class="label">NEPTUNE · DEEP AZURE ICE GIANT</span>
+      </div>
+    </section>
+
+    <!-- 12 · The Sun (Hero Star Exploration) -->
+    <section class="band band-clean" id="sun-sec" aria-label="The Sun">
+      <div class="band-indicator">
+        <span class="label">THE SUN · SOLAR CORONA &amp; PLASMA</span>
+      </div>
+    </section>
+
+    <!-- 13 · Solar System Overview (Extended Scroll Height) -->
+    <section class="band band-clean band-extended" id="solar-sec" aria-label="Solar System">
+      <div class="band-indicator">
+        <span class="label">SOL SYSTEM · COMPLETE PLANETARY ORBITS</span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         END OF WEBSITE / CONTACT TRANSMISSION MESSAGE ONLY
+         Placed after extended solar system viewing space
+         ============================================================ -->
+    <section class="content-hub" id="contact-hub">
+      <div class="hub-card" id="contact-section">
+        <p class="label">Signal Relay · Ground Station</p>
+        <h2>Transmit Message</h2>
+        <form class="ct-form">
+          <div class="form-group">
+            <label for="ct-name">CALLSIGN / NAME</label>
+            <input type="text" id="ct-name" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+            <label for="ct-email">COMM FREQUENCY / EMAIL</label>
+            <input type="email" id="ct-email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label for="ct-msg">TRANSMISSION MESSAGE</label>
+            <textarea id="ct-msg" class="form-control" placeholder="Type your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">SEND TRANSMISSION</button>
+          <div class="ct-status"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Telemetry Altitude HUD Overlay -->
+  <div class="altitude-hud" aria-hidden="true">
+    <div class="altitude-card">
+      <span class="altitude-value">ALTITUDE 0 KM</span>
+      <span class="altitude-band">EARTH · GÄVLE 60.6737° N 17.1696° E</span>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-box" id="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Clean Minimal Footer -->
+  <footer style="text-align:center; padding: 2.5rem 2rem; border-top:1px solid var(--line); font-family:var(--font-mono); font-size:0.75rem; color:var(--ink-faint); background: rgba(2, 3, 8, 0.9);">
+    <p>&copy; 2022–2026 Árstraumur · I/O Music · Interactive 3D Solar System Engine</p>
+    <p style="margin-top:0.4rem; font-size:0.68rem; opacity:0.85;">Geographic Map Imagery &copy; Maxar, Earthstar Geographics, Esri, USGS, NASA</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/three.min.js"></script>
+  <script src="solar-canvas.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

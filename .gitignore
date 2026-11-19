@@ -1,0 +1,44 @@
+# Operating System Files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor & IDE Settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+
+# Temporary & Backup Files
+*.bak
+*.backup
+*.backup.*
+*.tmp
+*.temp
+
+# Node & Package Managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Scraper Dump & Cache (HTTrack 100MB website mirror archive)
+hts-cache/
+hts-log.txt
+space Animation website/
+
+# Environment variables & local secrets
+.env
+.env*.local
+*.local
